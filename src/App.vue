@@ -42,9 +42,13 @@
     </v-toolbar>
     <v-content  class="grey lighten-4">
       <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <v-flex shrink>
+        <v-layout>
+          <v-flex>
             <router-view></router-view>
+            <v-btn class="float" color="blue darken-1" to="/new" fab absolute bottom right>
+              <v-icon>add</v-icon>
+            </v-btn>
+          {{storage}}
           </v-flex>
         </v-layout>
       </v-container>
@@ -54,16 +58,27 @@
 
 <script>
   export default {
+    computed:{
+      storage(){
+        return this.$store.state.storage;
+      }
+    },
     data: () => ({
       drawer: null
     }),
     props: {
       source: String
+    },
+    mounted(){
+      this.$store.dispatch("getStorage");
     }
   }
 </script>
 <style>
 .v-navigation-drawer__border{
   display: none;
+}
+.float{
+  margin: 0px 30px 60px 0;
 }
 </style>

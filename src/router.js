@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Docs from './views/Docs.vue'
+import NewFile from './views/NewFile.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/docs',
       name: 'docs',
       component: () => import(/* webpackChunkName: "about" */ './views/Docs.vue')
+    },
+    {
+      path: '/new',
+      name: 'newFile',
+      component: () => import(/* webpackChunkName: "about" */ './views/NewFile.vue')
     }
   ]
 })
