@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    storage: null
+    storage: null,
   },
   mutations: {
     getStorage(state){

@@ -39,16 +39,20 @@
     <v-toolbar app fixed clipped-left class="green lighten-3" dense>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Markd</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>
+      {{$route.name}}
+      </v-toolbar-title>
     </v-toolbar>
     <v-content  class="grey lighten-4">
       <v-container fluid fill-height>
         <v-layout>
           <v-flex>
             <router-view></router-view>
-            <v-btn class="float" color="blue darken-1" to="/new" fab absolute bottom right>
+              <v-btn class="float" color="green" to="/new" v-if="showButton"
+               fab absolute fixed bottom right>
               <v-icon>add</v-icon>
             </v-btn>
-          {{storage}}
           </v-flex>
         </v-layout>
       </v-container>
@@ -61,6 +65,14 @@
     computed:{
       storage(){
         return this.$store.state.storage;
+      },
+      showButton(){
+        if(this.$route.path == "/new"){
+          return false;
+        }
+        else{
+          return true;
+        }
       }
     },
     data: () => ({
