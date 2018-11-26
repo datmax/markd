@@ -9,12 +9,17 @@ export default new Vuex.Store({
   },
   mutations: {
     getStorage(state){
-      state.storage = window.localStorage;
+    },
+    pushFile(state, file){
+      
     }
   },
   actions: {
     getStorage({commit}){
       commit('getStorage');
     }
-  }
+  },
+    pushFile({commit}, file ){
+      commit("pushFile", file)
+    }
 })

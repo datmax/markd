@@ -18,6 +18,7 @@
      placeholder="This seems pretty empty.."
      v-model="body"></v-textarea>
     <div class="preview" v-else v-html="previewBody"></div>
+    <v-btn @click="save()">Save</v-btn>
 
 </v-flex>
 
@@ -49,6 +50,9 @@ export default {
             if(arg == "preview"){
                 this.preview = true;
             }
+        },
+        save(){
+            
         }
     }
 }
