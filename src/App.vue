@@ -53,6 +53,9 @@
                fab absolute fixed bottom right>
               <v-icon>add</v-icon>
             </v-btn>
+            <notifications group="notification"
+                   position="top right"
+                   :speed="500" />
           </v-flex>
         </v-layout>
       </v-container>
@@ -86,11 +89,12 @@
     }
   }
 </script>
-<style>
+<style scoped>
 .v-navigation-drawer__border{
   display: none;
 }
 .float{
-  margin: 0px 30px 60px 0;
+  margin-bottom: 60px;
+  margin-right: 20px;
 }
 </style>

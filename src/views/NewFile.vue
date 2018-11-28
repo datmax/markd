@@ -21,7 +21,7 @@
 </v-layout>
 <v-layout>
     <v-spacer></v-spacer>
-    <v-btn class="success" @click="save()">Save</v-btn>
+    <v-btn color="success" @click="save()">Save</v-btn>
     <v-btn color="error">Delete</v-btn>
 </v-layout>
 </v-container>
@@ -36,7 +36,8 @@ export default {
         file:{
             title: "",
             body: "",
-            id: null
+            id: null,
+            date: null
         },
         preview: false,
     }),
@@ -59,6 +60,7 @@ export default {
             if(this.file.id == null){
                 this.file.id = '_' + Math.random().toString(36).substr(2, 9)
             }
+            this.file.date = new Date().toJSON().slice(0,10).replace(/-/g,'/'); 
             this.$store.dispatch("save", this.file);            
         }
     },
