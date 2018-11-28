@@ -49,12 +49,12 @@
         <v-layout>
           <v-flex>
             <router-view></router-view>
-              <v-btn class="float" color="green" to="/new" v-if="showButton"
+              <v-btn class="float" color="green" to="/edit" v-if="showButton"
                fab absolute fixed bottom right>
               <v-icon>add</v-icon>
             </v-btn>
-            <notifications group="notification"
-                   position="top right"
+            <notifications class="nfstyle" group="notification"
+                   position="bottom right"
                    :speed="500" />
           </v-flex>
         </v-layout>
@@ -70,7 +70,7 @@
         return this.$store.state.storage;
       },
       showButton(){
-        if(this.$route.path == "/new"){
+        if(this.$route.name == "Edit File"){
           return false;
         }
         else{
@@ -96,5 +96,8 @@
 .float{
   margin-bottom: 60px;
   margin-right: 20px;
+}
+.nfstyle{
+  border-radius: 3px;
 }
 </style>

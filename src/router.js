@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Docs from './views/Docs.vue'
 import NewFile from './views/NewFile.vue'
 import Files from './views/Files.vue'
+import EditFile from "./views/EditFile.vue"
 
 
 Vue.use(Router)
@@ -28,17 +29,22 @@ export default new Router({
     {
       path: '/docs',
       name: 'Docs',
-      component: () => import(/* webpackChunkName: "about" */ './views/Docs.vue')
+      component: () => import(/* webpackChunkName: "docs" */ './views/Docs.vue')
     },
     {
-      path: '/new',
+      path: '/edit',
       name: 'Edit File',
-      component: () => import(/* webpackChunkName: "about" */ './views/NewFile.vue')
+      component: () => import(/* webpackChunkName: "new" */ './views/NewFile.vue')
     },
     {
       path: '/files',
       name: 'Files',
-      component: () => import(/* webpackChunkName: "about" */ './views/Files.vue')
+      component: () => import(/* webpackChunkName: "files" */ './views/Files.vue')
+    },
+    {
+      path: '/edit/:id',
+      name: 'Edit File',
+      component: () => import(/* webpackChunkName: "edit" */ './views/EditFile.vue')
     }
   ]
 })

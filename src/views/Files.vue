@@ -4,13 +4,13 @@
             <v-card v-if="!isEmpty">
             <v-list class="list">
             <template  v-for="file in files">
-            <v-list-tile :key="file.id">
+            <v-list-tile :key="file.id" @click="edit(file.id)">
             <v-list-tile-content>
                 {{file.title}}
             </v-list-tile-content>
             <v-spacer></v-spacer>
             <v-subheader>{{file.date}}</v-subheader>
-            <v-dialog v-model="dialog" width="500px">
+            <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-icon slot="activator" color="red" @click="dialog = true">close</v-icon>
             <v-card>
                 <v-card-title class="headline green lighten-3" primary-title>
@@ -59,6 +59,9 @@ export default {
                 text:  "File deleted successfully.",
                 type: "success"
     });
+        },
+        edit(id){
+            this.$router.replace("edit/" + id);
         }
     },
 
@@ -72,5 +75,7 @@ export default {
 }
 .list{
     padding-bottom: 0px;
+    padding-top: 0px;
 }
+
 </style>

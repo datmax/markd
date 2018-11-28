@@ -3,7 +3,7 @@
 
 <v-layout>
 <v-flex xs3>
-    <v-text-field v-model="file.title" label="File name"></v-text-field>
+    <v-text-field label="File name" v-model="file.title"></v-text-field>
 </v-flex>
 </v-layout>
 <v-layout>
@@ -14,8 +14,7 @@
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
     <v-textarea spellcheck="false" v-if="!preview" full-width class="textarea" rows="30"
-     placeholder="This seems pretty empty.."
-     v-model="file.body"></v-textarea>
+     placeholder="This seems pretty empty.." v-model="file.body"></v-textarea>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
 </v-flex>
 </v-layout>
@@ -29,28 +28,19 @@
 
 
 <script>
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
 import MarkdownIt from "markdown-it";
 var md = new MarkdownIt();
 export default {
     data: ()=>({
-        file:{
-            title: "",
-            body: "",
-            id: null,
-            date: null
-        },
         preview: false,
     }),
     computed:{
         previewBody: function(){
             return md.render(this.file.body);
-        }
+        },
+        file: function(){
+            return this.$store.getters.getFile(this.$route.params.id)
+        },
     },
 
     methods:{
@@ -63,15 +53,12 @@ export default {
             }
         },
         save(){
-            if(this.file.id == null){
-                this.file.id = uuidv4();
-            }
             this.file.date = new Date().toJSON().slice(0,10).replace(/-/g,'/'); 
             this.$store.dispatch("save", this.file);            
         }
     },
-    mounted(){
-        this.file.id = null;
+
+    beforeDestroy(){
         this.$store.dispatch("getStorage");
     }
 }

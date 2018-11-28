@@ -65,7 +65,12 @@ export default new Vuex.Store({
           commit("addFile", file);
         }
       },
-      }
+    },
 
+    getters:{
+      getFile: state => id => state.storage.find(function(el){
+        return el.id == id;
+      })
+      }
 
 })
