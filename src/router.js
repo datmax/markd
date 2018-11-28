@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Docs from './views/Docs.vue'
 import NewFile from './views/NewFile.vue'
+import Files from './views/Files.vue'
+
 
 Vue.use(Router)
 
@@ -32,6 +34,11 @@ export default new Router({
       path: '/new',
       name: 'Edit File',
       component: () => import(/* webpackChunkName: "about" */ './views/NewFile.vue')
+    },
+    {
+      path: '/files',
+      name: 'Files',
+      component: () => import(/* webpackChunkName: "about" */ './views/Files.vue')
     }
   ]
 })

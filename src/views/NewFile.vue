@@ -3,8 +3,7 @@
 
 <v-layout>
 <v-flex xs3>
-    <v-text-field v-if="!preview" v-model="title" label="File name"></v-text-field>
-    <h2 v-else>{{title}}</h2>
+    <v-text-field v-model="file.title" label="File name"></v-text-field>
 </v-flex>
 </v-layout>
 <v-layout>
@@ -12,16 +11,18 @@
     <v-tabs color="grey lighten-4" slider-color="green lighten-3">
     <v-spacer></v-spacer>
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
-    <v-tab @click="changeView('preview')"><v-icon class="icon" @>visibility</v-icon>Preview</v-tab>
+    <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
-    <v-textarea v-if="!preview" full-width class="textarea" rows="30"
+    <v-textarea spellcheck="false" v-if="!preview" full-width class="textarea" rows="30"
      placeholder="This seems pretty empty.."
-     v-model="body"></v-textarea>
-    <div class="preview" v-else v-html="previewBody"></div>
-    <v-btn @click="save()">Save</v-btn>
-
+     v-model="file.body"></v-textarea>
+    <div class="preview" v-else ><p v-html="previewBody"></p></div>
 </v-flex>
-
+</v-layout>
+<v-layout>
+    <v-spacer></v-spacer>
+    <v-btn class="success" @click="save()">Save</v-btn>
+    <v-btn color="error">Delete</v-btn>
 </v-layout>
 </v-container>
 </template>
@@ -32,13 +33,16 @@ import MarkdownIt from "markdown-it";
 var md = new MarkdownIt();
 export default {
     data: ()=>({
-        title: null,
-        body: null,
+        file:{
+            title: "",
+            body: "",
+            id: null
+        },
         preview: false,
     }),
     computed:{
         previewBody: function(){
-            return md.render(this.body);
+            return md.render(this.file.body);
         }
     },
 
@@ -52,8 +56,14 @@ export default {
             }
         },
         save(){
-            
+            if(this.file.id == null){
+                this.file.id = '_' + Math.random().toString(36).substr(2, 9)
+            }
+            this.$store.dispatch("save", this.file);            
         }
+    },
+    mounted(){
+        this.file.id = null;
     }
 }
 </script>
@@ -70,5 +80,10 @@ export default {
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
 }
-
+.v-btn{
+    margin-right: 0px;
+}
+p{
+    margin-top: 10px;
+}
 </style>
