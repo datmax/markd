@@ -3,36 +3,38 @@
         <v-flex xs8 offset-xs2>
             <v-card v-if="!isEmpty">
             <v-list class="list">
-            <template  v-for="file in files">
-            <v-list-tile :key="file.id" @click="edit(file.id)">
-            <v-list-tile-content>
+            <template  v-for="file in files" >
+            <v-list-tile  :key="file.id">
+            <v-list-tile-title @click="edit(file.id)">
                 {{file.title}}
-            </v-list-tile-content>
+            </v-list-tile-title>
             <v-spacer></v-spacer>
             <v-subheader>{{file.date}}</v-subheader>
-            <v-dialog class="dialog" v-model="dialog" width="500px">
-            <v-icon slot="activator" color="red" @click="dialog = true">close</v-icon>
+            <span @click="showDialog()">
+                <v-icon color="red">close</v-icon>
+            </span>
+            </v-list-tile>
+            <v-divider :key="file.title"></v-divider>
+            </template>
+            </v-list>
+            </v-card>   
+        </v-flex>
+        <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-card>
                 <v-card-title class="headline green lighten-3" primary-title>
                 Delete file
                 </v-card-title>
                 <v-card-text>
-                    <h3>Are you sure you want to delete {{file.title}}.md?</h3>
+                    <h3>Are you sure you want to deletemd?</h3>
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="deleteFile(file.id)" color="error">Delete</v-btn>
+                <v-btn color="error">Delete</v-btn>
                 <v-btn @click="dialog = false">Cancel</v-btn>
                 </v-card-actions>
                 </v-card>
             </v-dialog>
-            </v-list-tile>
-            <v-divider :key="file.title"></v-divider>
-            </template>
-            </v-list>
-            </v-card>
-        </v-flex>
     </v-layout>
 </template>
 
@@ -48,7 +50,7 @@ export default {
         },
         isEmpty(){
             return this.files.length > 0 ? false : true;
-        }
+        },
     },
     methods:{
         deleteFile(id){
@@ -62,6 +64,11 @@ export default {
         },
         edit(id){
             this.$router.replace("edit/" + id);
+        },
+        
+        showDialog(){               
+            this.dialog = true;
+            console.log(this.dialog);
         }
     },
 
@@ -69,13 +76,14 @@ export default {
 </script>
 
 <style scoped>
-.close :hover{
-    background-color: black;
-    cursor: pointer;
-}
 .list{
     padding-bottom: 0px;
     padding-top: 0px;
 }
-
+.v-list__tile__content{
+    width: 100%;
+}
+.v-list__tile__content :hover{
+    cursor: pointer;
+}
 </style>
