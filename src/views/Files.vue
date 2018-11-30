@@ -2,10 +2,11 @@
     <v-layout>
         <v-flex xs8 offset-xs2>
             <v-card v-if="!isEmpty">
+            <v-layout>
             <v-list class="list">
-            <template  v-for="file in files" >
-            <v-list-tile  :key="file.id">
-            <v-list-tile-title @click="edit(file.id)">
+            <template  v-for="file in files">
+            <v-list-tile class="tile" :key="file.id"  @click="edit(file.id)">
+            <v-list-tile-title>
                 {{file.title}}
             </v-list-tile-title>
             <v-spacer></v-spacer>
@@ -17,6 +18,7 @@
             <v-divider :key="file.title"></v-divider>
             </template>
             </v-list>
+            </v-layout>
             </v-card>   
         </v-flex>
         <v-dialog class="dialog" v-model="dialog" width="500px">
@@ -80,10 +82,11 @@ export default {
     padding-bottom: 0px;
     padding-top: 0px;
 }
-.v-list__tile__content{
+.tile{
     width: 100%;
+
 }
-.v-list__tile__content :hover{
-    cursor: pointer;
+.v-list__tile :hover{
+    background-color: gray !important;
 }
 </style>
