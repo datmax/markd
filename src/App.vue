@@ -33,7 +33,16 @@
           </v-list-tile-content>
         </v-list-tile>
         <v-divider></v-divider>
+        <div v-if="storage">
           <v-subheader>Recent files</v-subheader>
+          <div v-for="file in recentStorage" :key="file.id">
+            <v-list-tile @click="navigateTo(file.id)">
+          <v-list-tile-content>
+            <v-list-tile-title>{{file.title}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+          </div>
+        </div>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left class="green lighten-3" dense>
@@ -44,12 +53,12 @@
       {{$route.name}}
       </v-toolbar-title>
     </v-toolbar>
-    <v-content  class="grey lighten-4">
+    <v-content  class="grey lighten-5">
       <v-container fluid fill-height>
         <v-layout>
           <v-flex>
             <router-view></router-view>
-              <v-btn class="float" color="green" to="/edit" v-if="showButton"
+              <v-btn class="float" color="green" to="/new" v-if="showButton"
                fab absolute fixed bottom right>
               <v-icon>add</v-icon>
             </v-btn>
@@ -69,8 +78,14 @@
       storage(){
         return this.$store.state.storage;
       },
+      recentStorage(){
+        if(this.storage.length > 5){
+          return this.storage.slice(0,5);
+        }
+        else return this.storage;
+      },
       showButton(){
-        if(this.$route.name == "Edit File"){
+        if(this.$route.name == "Edit File" || this.$route.name =="New File"){
           return false;
         }
         else{
@@ -81,11 +96,16 @@
     data: () => ({
       drawer: null
     }),
+    methods:{
+      navigateTo(id){
+        this.$router.replace(id);
+      }
+    },
     props: {
       source: String
     },
     mounted(){
-      this.$store.dispatch("getStorage");
+      this.$store.dispatch("updateStorage");
     }
   }
 </script>
@@ -96,6 +116,7 @@
 .float{
   margin-bottom: 60px;
   margin-right: 20px;
+  z-index: 3
 }
 .nfstyle{
   border-radius: 3px;

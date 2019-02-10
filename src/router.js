@@ -32,8 +32,8 @@ export default new Router({
       component: () => import(/* webpackChunkName: "docs" */ './views/Docs.vue')
     },
     {
-      path: '/edit',
-      name: 'Edit File',
+      path: '/new',
+      name: 'New File',
       component: () => import(/* webpackChunkName: "new" */ './views/NewFile.vue')
     },
     {
@@ -42,7 +42,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "files" */ './views/Files.vue')
     },
     {
-      path: '/edit/:id',
+      path: '/:id',
       name: 'Edit File',
       component: () => import(/* webpackChunkName: "edit" */ './views/EditFile.vue')
     }

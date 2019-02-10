@@ -1,18 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { stat } from 'fs';
 
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    storage: []
+    storage: [],
+    recentFiles: []
   },
 
   //-----------MUTATIONS--------------
   mutations: {
     //sets state.storage to an instance of localstorage's "files" property.
-    getStorage(state){
+    updateStorage(state){
       state.storage = JSON.parse(localStorage.getItem("files"));
     },
 
@@ -20,7 +22,8 @@ export default new Vuex.Store({
     //changes the file at index with the new version.
     //is this a good way?idk
     editFile(state, payload){
-      state.storage.splice(payload.index, 1, payload.file );
+      state.storage.splice(payload.index, 1);
+      state.storage.unshift(payload.file);
       localStorage.setItem("files", JSON.stringify(state.storage));
     },
 
@@ -41,13 +44,13 @@ export default new Vuex.Store({
   },
   //-----------ACTIONS--------------
   actions: {
-    getStorage({commit}){
+    updateStorage({commit}){
       if(localStorage.getItem("files") === null){
         localStorage.setItem("files", JSON.stringify([]));
-        commit('getStorage');
+        commit('updateStorage');
       }
       else{
-        commit("getStorage");
+        commit("updateStorage");
       }
     },
 
@@ -59,7 +62,7 @@ export default new Vuex.Store({
         return el.id === file.id
         });
       if(index > -1){
-        commit("editFile", {file: file, id: index});
+        commit("editFile", {file: file, index: index});
         }
       else{
           commit("addFile", file);
