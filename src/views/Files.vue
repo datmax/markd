@@ -16,30 +16,30 @@
             </div>
             </v-layout>
             </v-list>
-            </v-card>   
+            </v-card>
         </v-flex>
     </v-layout>
 </template>
 
 <script>
 export default {
-    data: ()=>({
-        dialog: false
-    }),
+  data: () => ({
+    dialog: false
+  }),
 
-    computed: {
-        files(){
-            return this.$store.state.storage;
-        },
-        isEmpty(){
-            return this.files.length > 0 ? false : true;
-        },
+  computed: {
+    files () {
+      return this.$store.state.storage
     },
-    methods:{
-        edit(id){
-            this.$router.replace("/"+id);
-        }
-    },
+    isEmpty () {
+      return !(this.files.length > 0)
+    }
+  },
+  methods: {
+    edit (id) {
+      this.$router.replace('/' + id)
+    }
+  }
 
 }
 </script>

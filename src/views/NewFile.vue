@@ -13,7 +13,7 @@
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
-    <v-textarea no-resize full-width spellcheck="false" v-if="!preview" full-width class="textarea" rows="5"
+    <v-textarea no-resize full-width spellcheck="false" v-if="!preview" class="textarea" rows="5"
      placeholder="This seems pretty empty.."
      v-model="file.body"></v-textarea>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
@@ -43,68 +43,67 @@
 </v-container>
 </template>
 
-
 <script>
-//this function creates a unique id for files.
-//taken from somewhere on the magical world of the internet.
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
+// this function creates a unique id for files.
+// taken from somewhere on the magical world of the internet.
+import MarkdownIt from 'markdown-it'
+function uuidv4 () {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0; var v = c === 'x' ? r : (r & 0x3 | 0x8)
+    return v.toString(16)
+  })
 }
-import MarkdownIt from "markdown-it";
-var md = new MarkdownIt();
+var md = new MarkdownIt()
 export default {
-    data: ()=>({
-        file:{
-            title: "",
-            body: "",
-            id: null,
-            date: null
-        },
-        preview: false,
-        dialog: false
-    }),
-    computed:{
-        previewBody: function(){
-            return md.render(this.file.body);
-        }
+  data: () => ({
+    file: {
+      title: '',
+      body: '',
+      id: null,
+      date: null
     },
-
-    methods:{
-        changeView(arg){
-            if(arg == "code"){
-                this.preview = false;
-            }
-            if(arg == "preview"){
-                this.preview = true;
-            }
-        },
-        save(){
-            if(this.file.id == null){
-                this.file.id = uuidv4();
-            }
-            this.file.date = new Date().toJSON().slice(0,10).replace(/-/g,'/'); 
-            this.$store.dispatch("save", this.file);
-            this.$notify({
-                group: 'notification',
-                text:  "File saved",
-                type: "success"
-            });         
-        },
-        cancel(){
-            console.log("cancel");
-            this.$router.replace("/");
-        },
-        showDialog(){
-            this.dialog = true;
-        }
-    },
-    mounted(){
-        this.file.id = null;
-        this.$store.dispatch("updateStorage");
+    preview: false,
+    dialog: false
+  }),
+  computed: {
+    previewBody: function () {
+      return md.render(this.file.body)
     }
+  },
+
+  methods: {
+    changeView (arg) {
+      if (arg === 'code') {
+        this.preview = false
+      }
+      if (arg === 'preview') {
+        this.preview = true
+      }
+    },
+    save () {
+      if (this.file.id === null) {
+        this.file.id = uuidv4()
+      }
+      this.file.date = new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+      this.$store.dispatch('save', this.file)
+      this.$notify({
+        group: 'notification',
+        text: 'File saved',
+        type: 'success'
+      })
+    },
+    cancel () {
+      console.log('cancel')
+      this.$router.replace('/')
+    },
+    showDialog () {
+      this.dialog = true
+    }
+  },
+  mounted () {
+    this.file.id = null
+    this.$store.dispatch('updateStorage')
+  }
 }
 </script>
 

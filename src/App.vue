@@ -4,7 +4,7 @@
       v-model="drawer"
       clipped
       fixed
-      app 
+      app
       class="grey lighten-2"
     >
       <v-list dense>
@@ -73,41 +73,39 @@
 </template>
 
 <script>
-  export default {
-    computed:{
-      storage(){
-        return this.$store.state.storage;
-      },
-      recentStorage(){
-        if(this.storage.length > 5){
-          return this.storage.slice(0,5);
-        }
-        else return this.storage;
-      },
-      showButton(){
-        if(this.$route.name == "Edit File" || this.$route.name =="New File"){
-          return false;
-        }
-        else{
-          return true;
-        }
+export default {
+  computed: {
+    storage () {
+      return this.$store.state.storage
+    },
+    recentStorage () {
+      if (this.storage.length > 5) {
+        return this.storage.slice(0, 5)
+      } else return this.storage
+    },
+    showButton () {
+      if (this.$route.name === 'Edit File' || this.$route.name === 'New File') {
+        return false
+      } else {
+        return true
       }
-    },
-    data: () => ({
-      drawer: null
-    }),
-    methods:{
-      navigateTo(id){
-        this.$router.replace(id);
-      }
-    },
-    props: {
-      source: String
-    },
-    mounted(){
-      this.$store.dispatch("updateStorage");
     }
+  },
+  data: () => ({
+    drawer: null
+  }),
+  methods: {
+    navigateTo (id) {
+      this.$router.replace(id)
+    }
+  },
+  props: {
+    source: String
+  },
+  mounted () {
+    this.$store.dispatch('updateStorage')
   }
+}
 </script>
 <style scoped>
 .v-navigation-drawer__border{

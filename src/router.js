@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Docs from './views/Docs.vue'
-import NewFile from './views/NewFile.vue'
-import Files from './views/Files.vue'
-import EditFile from "./views/EditFile.vue"
-
 
 Vue.use(Router)
 

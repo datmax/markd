@@ -42,68 +42,65 @@
 </v-container>
 </template>
 
-
 <script>
-import MarkdownIt from "markdown-it";
-var md = new MarkdownIt();
+import MarkdownIt from 'markdown-it'
+var md = new MarkdownIt()
 export default {
-    data: ()=>({
-        preview: false,
-        dialog: false
-    }),
-    computed:{
-        previewBody: function(){
-            return md.render(this.file.body);
-        },
-        file: function(){
-            //"file" object has this structure:        
-            //title: "",
-            //body: "",
-            //id: null,
-            //date: null
-            return this.$store.getters.getFile(this.$route.params.id)
-        },
+  data: () => ({
+    preview: false,
+    dialog: false
+  }),
+  computed: {
+    previewBody: function () {
+      return md.render(this.file.body)
     },
-
-    methods:{
-        changeView(arg){
-            if(arg == "code"){
-                this.preview = false;
-            }
-            if(arg == "preview"){
-                this.preview = true;
-            }
-        },
-        save(){
-            this.file.date = new Date().toJSON().slice(0,10).replace(/-/g,'/'); 
-            this.$store.dispatch("save", this.file);
-            this.$notify({
-                group: 'notification',
-                text:  "File saved.",
-                type: "success"
-            });         
-        },
-        showDialog(){               
-            this.dialog = true;
-            //console.log(this.dialog);
-        },
-        deleteFile(id){
-            this.$store.commit("deleteFile", id);
-            this.$router.replace("files");
-            this.dialog = false;
-            this.$notify({
-                group: 'notification',
-                text:  "File deleted successfully.",
-                type: "success"
-            });
-
-
-        }
-    },
-
-    beforeDestroy(){
-        this.$store.dispatch("updateStorage");
+    file: function () {
+      // "file" object has this structure:
+      // title: "",
+      // body: "",
+      // id: null,
+      // date: null
+      return this.$store.getters.getFile(this.$route.params.id)
     }
+  },
+
+  methods: {
+    changeView (arg) {
+      if (arg === 'code') {
+        this.preview = false
+      }
+      if (arg === 'preview') {
+        this.preview = true
+      }
+    },
+    save () {
+      this.file.date = new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+      this.$store.dispatch('save', this.file)
+      this.$notify({
+        group: 'notification',
+        text: 'File saved.',
+        type: 'success'
+      })
+    },
+    showDialog () {
+      this.dialog = true
+      // console.log(this.dialog);
+    },
+    deleteFile (id) {
+      this.$store.commit('deleteFile', id)
+      this.$router.replace('files')
+      this.dialog = false
+      this.$notify({
+        group: 'notification',
+        text: 'File deleted successfully.',
+        type: 'success'
+      })
+    }
+  },
+
+  beforeDestroy () {
+    this.$store.dispatch('updateStorage')
+  }
 }
 </script>
 
