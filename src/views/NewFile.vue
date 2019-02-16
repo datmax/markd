@@ -7,13 +7,12 @@
 </v-flex>
 </v-layout>
 <v-layout>
-<v-flex xs12>
+<v-flex xs12 md6>
     <v-tabs color="grey lighten-5" slider-color="green lighten-3">
-    <v-spacer></v-spacer>
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
-    <v-textarea no-resize full-width spellcheck="false" v-if="!preview" class="textarea" rows="5"
+    <v-textarea no-resize full-width auto-grow spellcheck="false" v-if="!preview" class="textarea"
      placeholder="This seems pretty empty.."
      v-model="file.body"></v-textarea>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
@@ -21,7 +20,7 @@
 </v-layout>
 <v-layout>
     <v-spacer></v-spacer>
-    <v-btn color="success" @click="save()">Save</v-btn>
+    <v-btn color="green" @click="save()">Save</v-btn>
     <v-btn color="grey" @click="showDialog()">Cancel</v-btn>
     <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-card>
@@ -34,7 +33,7 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="cancel()" color="error">Yes</v-btn>
+                <v-btn @click="cancel()" color="red lighten-3">Yes</v-btn>
                 <v-btn @click="dialog = false">No</v-btn>
                 </v-card-actions>
                 </v-card>
@@ -111,6 +110,8 @@ export default {
 .textarea{
     border: 1px solid grey;
     border-radius: 3px;
+    width: 100%;
+    height: 55vh;
 }
 .icon{
     padding-right: 10px;
