@@ -1,12 +1,12 @@
 
  <template>
-  <v-app id="inspire">
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       clipped
       fixed
       app
-      class="grey lighten-2"
+      class="secondary"
     >
       <v-list dense>
         <v-list-tile to="/">
@@ -46,7 +46,7 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app fixed clipped-left class="green lighten-3" dense>
+    <v-toolbar app fixed clipped-left class="primary" dense>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Markd</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -54,12 +54,12 @@
       {{$route.name}}
       </v-toolbar-title>
     </v-toolbar>
-    <v-content  class="grey lighten-5">
+    <v-content  class="background">
       <v-container fluid fill-height>
         <v-layout>
           <v-flex>
             <router-view></router-view>
-              <v-btn class="float" color="green" to="/new" v-if="showButton"
+              <v-btn dark class="float primary" to="/new" v-if="showButton"
                fab absolute fixed bottom right>
               <v-icon>add</v-icon>
             </v-btn>

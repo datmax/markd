@@ -3,8 +3,8 @@
       <h1 class="display-4">Markd</h1>
       <hr>
       <h2 class="display-2">A fast, easy to use markdown editor and previewer.</h2>
-      <p class="red">
-        <v-alert :value="true" type="warning">NOTE: This is a work in progress. If you encounter some bugs,
+      <p class="danger">
+        <v-alert dark :value="true" type="warning">NOTE: This is a work in progress. If you encounter some bugs,
         <a href="https://github.com/datmax/markd"> open an issue</a>.</v-alert>
      </p>
       <div class="headline text-md-left">

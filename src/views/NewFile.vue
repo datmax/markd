@@ -2,13 +2,13 @@
 <v-container>
 
 <v-layout>
-<v-flex xs12 md6>
+<v-flex xs12 lg6>
     <v-text-field v-model="file.title" label="File name"></v-text-field>
 </v-flex>
 </v-layout>
 <v-layout>
-<v-flex xs12 md6>
-    <v-tabs color="grey lighten-5" slider-color="green lighten-3">
+<v-flex xs12 lg6>
+    <v-tabs class="hidden lg-and-up" color="background" slider-color="primary">
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
@@ -17,14 +17,17 @@
      v-model="file.body"></v-textarea>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
 </v-flex>
+<v-flex lg6>
+  <div class="preview"><p v-html="previewBody"></p></div>
+</v-flex>
 </v-layout>
 <v-layout>
     <v-spacer></v-spacer>
-    <v-btn color="green" @click="save()">Save</v-btn>
-    <v-btn color="grey" @click="showDialog()">Cancel</v-btn>
+    <v-btn color="primary" @click="save()">Save</v-btn>
+    <v-btn color="secondary" @click="showDialog()">Cancel</v-btn>
     <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-card>
-                <v-card-title class="headline green lighten-3" primary-title>
+                <v-card-title class="headline primary" primary-title>
                 Delete file
                 </v-card-title>
                 <v-card-text>
@@ -33,7 +36,7 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="cancel()" color="red lighten-3">Yes</v-btn>
+                <v-btn @click="cancel()" color="danger">Yes</v-btn>
                 <v-btn @click="dialog = false">No</v-btn>
                 </v-card-actions>
                 </v-card>
