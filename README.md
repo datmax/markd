@@ -25,5 +25,14 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## To do:
+- add codemirror support
+- expand text area on mobile screens
+- export files in different format
+- make some kind of folder system
+- fix some colors(e.g. buttons)
+- some minor bug fixes 
+
+
+
+
