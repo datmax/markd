@@ -4,7 +4,7 @@
       <hr>
       <h2 class="display-2">A fast, easy to use markdown editor and previewer.</h2>
       <p class="danger">
-        <v-alert dark :value="true" type="warning">NOTE: This is a work in progress. If you encounter some bugs,
+        <v-alert :value="true" class="secondary">NOTE: This is a work in progress. If you encounter some bugs,
         <a href="https://github.com/datmax/markd"> open an issue</a>.</v-alert>
      </p>
       <div class="headline text-md-left">
@@ -16,23 +16,29 @@
         <p>Work in progress: </p>
         <ul>
           <li>Export markdown files in .md, .pdf and .html</li>
-          <li>Dark theme</li>
-          <li>Something else i don't remember that i wanted to implement</li>
+          <li>Add user authentication</li>
+          <li>Adjust color schemes</li>
+          <li>Adjust buttons functionality</li>
         </ul>
-
+      </div>
+      <div id="repo" class="headline">
+        <p>Github repo: <a href="https://github.com/datmax/markd">https://github.com/datmax/markd</a></p>
       </div>
     </div>
 </template>
 
 <script>
 export default{
-    components:{
+  components: {
 
-    }
+  }
 }
 </script>
 <style scoped>
 h2{
   padding-bottom: 50px;
+}
+#repo{
+  padding-top: 20px;
 }
 </style>

@@ -1,23 +1,6 @@
 <template>
-<v-container >
-
-<v-layout>
-<v-flex xs12 md6>
-    <v-text-field label="File name" v-model="file.title"></v-text-field>
-</v-flex>
-</v-layout>
-<v-layout>
-<v-flex xs12>
-    <v-tabs color="grey lighten-5" slider-color="green lighten-3">
-    <v-spacer></v-spacer>
-    <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
-    <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
-    </v-tabs>
-    <v-textarea no-resize spellcheck="false" v-if="!preview" full-width class="textarea" rows="5"
-     placeholder="This seems pretty empty.." v-model="file.body"></v-textarea>
-    <div class="preview" v-else ><p v-html="previewBody"></p></div>
-</v-flex>
-</v-layout>
+<v-container>
+<editor :file="file"></editor>
 <v-layout>
     <v-spacer></v-spacer>
     <v-btn color="success" @click="save()">Save</v-btn>
@@ -44,6 +27,7 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
+import editor from '@/components/editor'
 var md = new MarkdownIt()
 export default {
   data: () => ({
@@ -100,6 +84,9 @@ export default {
 
   beforeDestroy () {
     this.$store.dispatch('updateStorage')
+  },
+  components: {
+    'editor': editor
   }
 }
 </script>

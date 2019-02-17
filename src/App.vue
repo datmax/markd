@@ -55,7 +55,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-content  class="background">
-      <v-container fluid fill-height>
+      <v-container fill-height>
         <v-layout>
           <v-flex>
             <router-view></router-view>
@@ -108,7 +108,12 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
+@media(max-width: 600px) {
+    .container{
+      padding: 1px !important;
+    }
+}
 .v-navigation-drawer__border{
   display: none;
 }
@@ -119,5 +124,8 @@ export default {
 }
 .nfstyle{
   border-radius: 3px;
+}
+.vue-notification .success{
+  background: #81C784;
 }
 </style>
