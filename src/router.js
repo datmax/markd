@@ -37,6 +37,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "files" */ './views/Files.vue')
     },
     {
+      path: '/preferences',
+      name: 'Preferences',
+      component: () => import(/* webpackChunkName: "edit" */ './views/Preferences.vue')
+    },
+    {
       path: '/:id',
       name: 'Edit File',
       component: () => import(/* webpackChunkName: "edit" */ './views/EditFile.vue')

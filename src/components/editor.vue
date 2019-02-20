@@ -11,12 +11,10 @@
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
-    <v-textarea full-width auto-grow spellcheck="false" v-if="!preview" class="textarea"
-     placeholder="This seems pretty empty.."
-     v-model="file.body"></v-textarea>
+    <codemirror class="code" v-model="file.body" :options="cmOption" v-if="!preview"></codemirror>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
 </v-flex>
-<v-flex xl6 class="hidden-lg-and-down">
+<v-flex xl6 class="hidden-lg-and-down lg">
   <div class="preview"><p v-html="previewBody"></p></div>
 </v-flex>
 </v-layout>
@@ -25,6 +23,10 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
+import { codemirror } from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/markdown/markdown.js'
+
 var md = new MarkdownIt()
 
 export default {
@@ -37,6 +39,15 @@ export default {
     preview: false,
     rules: {
       required: value => !!value || 'Required.'
+    },
+    cmOption: {
+      tabSize: 4,
+      styleActiveLine: true,
+      lineNumbers: true,
+      lineWrapping: false,
+      line: true,
+      mode: 'text/x-markdown',
+      theme: 'lesser-dark'
     }
   }),
 
@@ -53,10 +64,32 @@ export default {
         this.preview = true
       }
     }
+  },
+  components: {
+    codemirror
   }
 }
 </script>
 
 <style>
+.code{
+  margin: 0 !important;
+}
+.Codemirror-gutter{
+  z-index: 0;
+}
+.lg{
+  border-top: 1px solid grey;
+  margin-left: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.textarea{
+    border: 1px solid grey;
+    border-radius: 3px;
+    width: 100%;
+    height: 55vh;
+    padding-top: 5px;
+}
 
 </style>

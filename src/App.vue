@@ -33,6 +33,14 @@
             <v-list-tile-title>Files</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+         <v-list-tile to="/preferences">
+          <v-list-tile-action>
+            <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Preferences</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-divider></v-divider>
         <div v-if="storage">
           <v-subheader>Recent files</v-subheader>

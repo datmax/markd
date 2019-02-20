@@ -87,22 +87,10 @@ export default {
 </script>
 
 <style>
-.textarea{
-    border: 1px solid grey;
-    border-radius: 3px;
-    width: 100%;
-    height: 55vh;
-}
 .icon{
     padding-right: 10px;
 }
-.preview{
-    border-top: 1px solid grey;
-}
 .v-btn{
     margin-right: 0px;
-}
-p{
-    margin-top: 10px;
 }
 </style>

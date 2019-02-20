@@ -78,7 +78,7 @@ export default {
     },
     download (file) {
       var element = document.createElement('a')
-      element.setAttribute('href', 'data:file.body/plain;charset=utf-8,' + encodeURIComponent(file.body))
+      element.setAttribute('href', 'data:html/plain;charset=utf-8,' + encodeURIComponent(file.body))
       element.setAttribute('download', file.title + '.md')
 
       element.style.display = 'none'
