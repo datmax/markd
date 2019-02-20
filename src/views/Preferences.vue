@@ -1,8 +1,9 @@
 <template>
 <div text-xs-left>
-    <h1 class="display-4">Preferences
-    </h1>
+    <h1 class="display-4">Preferences </h1>
     <br><br>
+    <h2>Coming soon&#8482</h2>
+<!--
     <v-container id="dropdown-example" grid-list-xl>
     <v-layout row wrap>
       <v-flex xs12 sm6>
@@ -16,6 +17,7 @@
     </v-layout>
     <v-btn color="primary" @click="save()"></v-btn>
     </v-container>
+    !-->
 </div>
 </template>
 

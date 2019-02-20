@@ -2,7 +2,7 @@
     <div>
     <blockquote class="quote display-2 font-weight-bold">What is markdown?</blockquote>
     <p class="body-2">
-        Taken from <a href="https://en.wikipedia.org/wiki/Markdown">here</a>:
+        Taken from <a href="https://en.wikipedia.org/wiki/Markdown">Wikipedia</a>:
         Markdown is a lightweight markup language with plain text formatting syntax.
         Its design allows it to be converted to many output formats,
         but the original tool by the same name only supports HTML.

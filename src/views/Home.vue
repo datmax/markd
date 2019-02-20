@@ -1,24 +1,20 @@
 <template>
     <div class="text-xs-center">
       <h1 class="display-4">Markd</h1>
-      <hr>
+      <hr><br>
       <h2 class="display-2">A fast, easy to use markdown editor and previewer.</h2>
-      <p class="danger">
-        <v-alert :value="true" class="secondary">NOTE: This is a work in progress. If you encounter some bugs,
-        <a href="https://github.com/datmax/markd"> open an issue</a>.</v-alert>
-     </p>
       <div class="headline text-md-left">
-        <p>Features:</p>
+        <p class="display-1">Features:</p>
         <ul>
         <li>Write in markdown and preview your work with a single click.</li>
         <li>No account required! All your files are saved in browser's local storage.</li>
+        <li>New🔥: Syntax highlighting supported!</li>
         </ul>
         <p>Work in progress: </p>
         <ul>
+          <li>Custom themes, tab space, app theme(dark or light)</li>
           <li>Export markdown files in .md, .pdf and .html</li>
-          <li>Add user authentication</li>
-          <li>Adjust color schemes</li>
-          <li>Adjust buttons functionality</li>
+          <li>Add user authentication(maybe?)</li>
         </ul>
       </div>
       <div id="repo" class="headline">

@@ -4,7 +4,7 @@
 <v-layout>
     <v-spacer></v-spacer>
     <v-btn color="primary" @click="save()">Save</v-btn>
-    <v-btn color="secondary" @click="showDialog()">Cancel</v-btn>
+    <v-btn color="secondary" @click="showDialog()">Discard</v-btn>
     <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-card>
                 <v-card-title class="headline primary" primary-title>

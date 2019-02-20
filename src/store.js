@@ -20,7 +20,7 @@ export default new Vuex.Store({
       lineWrapping: false,
       line: true,
       mode: 'text/x-markdown',
-      theme: themes.mbo,
+      theme: themes.solarized,
       viewportMargin: Infinity
     }
   },
