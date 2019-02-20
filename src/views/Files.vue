@@ -50,7 +50,7 @@
 </template>
 
 <script>
-var md = require("markdown-it")({
+var md = require('markdown-it')({
   html: true
 })
 export default {

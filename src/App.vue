@@ -96,7 +96,7 @@ export default {
     },
     showButton () {
       if (this.$route.name === 'Edit File' || this.$route.name === 'New File' ||
-          this.$route.name === "Files") {
+          this.$route.name === 'Files') {
         return false
       } else {
         return true
@@ -116,7 +116,7 @@ export default {
   },
   mounted () {
     this.$store.dispatch('updateStorage')
-    //this.$store.dispatch('updateTheme')
+    // this.$store.dispatch('updateTheme')
   }
 }
 </script>

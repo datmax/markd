@@ -22,22 +22,22 @@
 </template>
 
 <script>
-//THIS IS NOT WORKING
-//HOW DO I GET THE VALUE OF THAT BUTTON IDK
+// THIS IS NOT WORKING
+// HOW DO I GET THE VALUE OF THAT BUTTON IDK
 export default {
-    data:()=>({
-        styles: ["Mbo", "Base16-dark", "Solarized Light", "Material"]
-    }),
-    computed: {
-        currentTheme(){
-            return this.$store.state.preferences.theme
-        }
-    },
-    methods:{
-        save(e){
-            console.log(e.target.value);
-        }
+  data: () => ({
+    styles: ['Mbo', 'Base16-dark', 'Solarized Light', 'Material']
+  }),
+  computed: {
+    currentTheme () {
+      return this.$store.state.preferences.theme
     }
+  },
+  methods: {
+    save (e) {
+      console.log(e.target.value)
+    }
+  }
 }
 </script>
 

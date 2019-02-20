@@ -27,10 +27,10 @@ import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/markdown/markdown.js'
 import mbo from 'codemirror/theme/mbo.css'
-import base16 from "codemirror/theme/base16-dark.css"
-import solarized from "codemirror/theme/solarized.css"
-import material from "codemirror/theme/material.css"
-import monokai from "codemirror/theme/monokai.css"
+import base16 from 'codemirror/theme/base16-dark.css'
+import solarized from 'codemirror/theme/solarized.css'
+import material from 'codemirror/theme/material.css'
+import monokai from 'codemirror/theme/monokai.css'
 
 var md = new MarkdownIt()
 
@@ -39,9 +39,9 @@ export default {
     previewBody: function () {
       return md.render(this.file.body)
     },
-      preferences: function(){
-        return this.$store.state.preferences
-      }
+    preferences: function () {
+      return this.$store.state.preferences
+    }
   },
   data: () => ({
     preview: false,
