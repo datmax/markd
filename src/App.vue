@@ -54,7 +54,7 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app fixed clipped-left class="primary" dense>
+    <v-toolbar app fixed clipped-left class="primary toolbar" dense>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Markd</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -66,7 +66,9 @@
       <v-container fill-height>
         <v-layout>
           <v-flex>
+            <transition name="fade" mode="out-in">
             <router-view></router-view>
+            </transition>
               <v-btn dark class="float primary" to="/new" v-if="showButton"
                fab absolute fixed bottom right>
               <v-icon>add</v-icon>
@@ -93,7 +95,8 @@ export default {
       } else return this.storage
     },
     showButton () {
-      if (this.$route.name === 'Edit File' || this.$route.name === 'New File') {
+      if (this.$route.name === 'Edit File' || this.$route.name === 'New File' ||
+          this.$route.name === "Files") {
         return false
       } else {
         return true
@@ -113,10 +116,20 @@ export default {
   },
   mounted () {
     this.$store.dispatch('updateStorage')
+    //this.$store.dispatch('updateTheme')
   }
 }
 </script>
-<style>
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.toolbar{
+  z-index: 20 !important;
+}
 @media(max-width: 600px) {
     .container{
       padding: 1px !important;
@@ -126,8 +139,8 @@ export default {
   display: none;
 }
 .float{
-  margin-bottom: 60px;
-  margin-right: 20px;
+  margin-bottom: 60px !important;
+  margin-right: 25px !important;
   z-index: 3
 }
 .nfstyle{

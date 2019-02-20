@@ -1,12 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import themes from "../src/assets/themes"
+import 'codemirror/theme/mbo.css'
+import "codemirror/theme/base16-dark.css"
+import "codemirror/theme/solarized.css"
+import "codemirror/theme/material.css"
+import "codemirror/theme/monokai.css"
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     storage: [],
-    recentFiles: []
+    recentFiles: [],
+    preferences:{
+      tabSize: 4,
+      styleActiveLine: true,
+      lineNumbers: true,
+      lineWrapping: false,
+      line: true,
+      mode: 'text/x-markdown',
+      theme: themes.mbo,
+      viewportMargin: Infinity
+    }
   },
 
   // -----------MUTATIONS--------------
@@ -24,7 +40,8 @@ export default new Vuex.Store({
       state.storage.unshift(payload.file)
       localStorage.setItem('files', JSON.stringify(state.storage))
     },
-
+    
+    //adds new file to storage 
     addFile (state, file) {
       state.storage.push(file)
       localStorage.setItem('files', JSON.stringify(state.storage))
@@ -41,6 +58,8 @@ export default new Vuex.Store({
   },
   // -----------ACTIONS--------------
   actions: {
+    //if there is no "files" object,
+    //set LocalStorage = state.storage
     updateStorage ({ commit }) {
       if (localStorage.getItem('files') === null) {
         localStorage.setItem('files', JSON.stringify([]))

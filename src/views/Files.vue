@@ -21,6 +21,14 @@
             <v-divider></v-divider>
             </v-list>
             </v-card>
+        <div v-else class="text-xs-left">
+          <h1 class="display-1">
+            <p>>Be me</p>
+            <p>>See someone using something i created</p>
+            <p>>Feelsgoodman.jpg</p>
+          </h1>
+          <v-btn class="primary" block to="new">Create a new file!</v-btn>
+        </div>
         </v-flex>
         <v-dialog class="dialog" v-model="dialog" width="500px">
             <v-card>
@@ -42,6 +50,9 @@
 </template>
 
 <script>
+var md = require("markdown-it")({
+  html: true
+})
 export default {
   data: () => ({
     dialog: false,
@@ -77,9 +88,10 @@ export default {
       })
     },
     download (file) {
+      var a = md.render(file.body)
       var element = document.createElement('a')
-      element.setAttribute('href', 'data:html/plain;charset=utf-8,' + encodeURIComponent(file.body))
-      element.setAttribute('download', file.title + '.md')
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(a))
+      element.setAttribute('download', file.title + '.html')
 
       element.style.display = 'none'
       document.body.appendChild(element)
@@ -93,6 +105,10 @@ export default {
 </script>
 
 <style scoped>
+.text-xs-left{
+  color: lightgray;
+  margin: 0 auto;
+}
 .list{
     padding-bottom: 0px;
     padding-top: 0px;

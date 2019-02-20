@@ -11,7 +11,7 @@
     <v-tab @click="changeView('code')"><v-icon class="icon" >code</v-icon>Edit</v-tab>
     <v-tab @click="changeView('preview')"><v-icon class="icon">visibility</v-icon>Preview</v-tab>
     </v-tabs>
-    <codemirror class="code" v-model="file.body" :options="cmOption" v-if="!preview"></codemirror>
+    <codemirror class="code" v-model="file.body" :options="preferences" v-if="!preview"></codemirror>
     <div class="preview" v-else ><p v-html="previewBody"></p></div>
 </v-flex>
 <v-flex xl6 class="hidden-lg-and-down lg">
@@ -26,6 +26,11 @@ import MarkdownIt from 'markdown-it'
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/markdown/markdown.js'
+import mbo from 'codemirror/theme/mbo.css'
+import base16 from "codemirror/theme/base16-dark.css"
+import solarized from "codemirror/theme/solarized.css"
+import material from "codemirror/theme/material.css"
+import monokai from "codemirror/theme/monokai.css"
 
 var md = new MarkdownIt()
 
@@ -33,21 +38,15 @@ export default {
   computed: {
     previewBody: function () {
       return md.render(this.file.body)
-    }
+    },
+      preferences: function(){
+        return this.$store.state.preferences
+      }
   },
   data: () => ({
     preview: false,
     rules: {
       required: value => !!value || 'Required.'
-    },
-    cmOption: {
-      tabSize: 4,
-      styleActiveLine: true,
-      lineNumbers: true,
-      lineWrapping: false,
-      line: true,
-      mode: 'text/x-markdown',
-      theme: 'lesser-dark'
     }
   }),
 
@@ -72,11 +71,9 @@ export default {
 </script>
 
 <style>
-.code{
+.CodeMirror{
   margin: 0 !important;
-}
-.Codemirror-gutter{
-  z-index: 0;
+  height: auto;
 }
 .lg{
   border-top: 1px solid grey;
